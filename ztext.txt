@@ -1,0 +1,87 @@
+npm init  
+Readme.md
+public
+     -> temp =>to store temporory files like photos or videos at the time of uploading on APIs like aws or cloudinary
+       make empty file named .gitkeep so that we can upload empty folders on git
+.gitigonre  - do not upload the sceret files /data/folders on github   and also the files which can be recreated like node modules
+           on browser  .gitignore Generator  -> search node  =>copy and paste it
+.env  =>enviorment variables are taken from system 
+.env.sample ->because .env is not uploaded on git
+src folder
+      -> touch app.js constants.js index.js
+(in js we can do importing through two ways 
+     common js -require syntax
+     modules  - import syntax
+) we want  to make consistency in whole project therefore
+                     package.json add
+                        ->"type":"module"
+after making changes we have to restart the server multiple times therefore we use
+----------------------------------Nodemon
+ nodemon ->after saving files server restarts
+    npm i -D nodemon                   //dev dependencies
+    we waant to run index .js file therefore
+     "scripts": {
+    "dev": "nodemon src/index.js"
+     },
+
+creating folders in src
+          -> mkdir controllers db middlewares models routes utils(utility -files or folders which uses repeateadly)
+
+-------------------------------Prettier
+so formatting across the whole  projects 
+after addind prettier define its settings also
+             npm i -D prettier
+             .prettierrc   ->define settings
+             .prettierignore ->files which ignore prettier rules
+
+****************************************DATABASE CONNECTION**********************************************
+----------------MongoDB  -> online database version MongodbAtlas
+add port & mongodb_uri in .env
+define database name in constant.js
+npm i mongoose dotenv express
+database se jab bhi baat karo always wrap in try catch, assume database is in another continent
+                     always make use of async & await(jab bhi time lage) /try & catch or promises
+index.js me database connec kia- using iife {}{}
+                                  import express
+                                   app.on()&app.lsten()
+                                we have pollute our index file so we use other approach
+                                -we will make a seprate file index.js inside db them connect it to main index,js file
+                                   process.exit()
+
+// import mongoose from "mongoose";
+// import { DB_NAME } from "./constants";
+
+/*
+import express from "express";
+const app=express()
+
+(async ()=>{                                         //iife -immediately execute
+    try {
+       await mongoose.connect(`${process.env.MONGODB_URI }/${DB_NAME}`)
+       app.on("error",(error)=>{
+        console.error("ERROR",error);
+        throw error
+        
+       })
+       app.listen(process.env.PORT,()=>{
+        console.log(`App is listening on port ${process.env.PORT}`);
+        
+       })
+    }
+    catch (error){
+        console.log("ERROR:", error)
+        throw error
+        
+    }
+})()
+*/
+
+
+                                  -//require("dotenv").config({path:"./env"})          //it destroy our usage we have to use import in our entire project
+
+                                   we have to lad .env file as early as possible so to give env variabes wherever needed
+                                   import dotenv from "dotenv"          //we have to config it
+                                   dotenv.config({
+                                       path:"./env"
+                                   })
+                                   
