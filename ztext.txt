@@ -79,7 +79,7 @@ const app=express()
 
                                   -//require("dotenv").config({path:"./env"})          //it destroy our usage we have to use import in our entire project
 
-                                   we have to lad .env file as early as possible so to give env variabes wherever needed
+                                   we have to load .env file as early as possible so to give env variabes wherever needed
                                    import dotenv from "dotenv"          //we have to config it
                                    dotenv.config({
                                        path:"./env"
